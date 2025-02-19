@@ -1,1 +1,226 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ελένη Γ' Επεισόδιο</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-image: url('background.png');
+            background-size: cover;
+            color: #333;
+        }
+        .quiz, .roleplay, .irony {
+            margin-top: 20px;
+            display: none;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .active { display: block; }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        h1, h2 {
+            color: #2c3e50;
+        }
+        .video-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #e74c3c;
+            padding: 10px 20px;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .video-button:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <button class="video-button" onclick="window.open('https://youtu.be/jibeyMHfYO8', '_blank', 'width=600,height=400')">🎥 Δες το βίντεο</button>
 
+    <h1>Ελένη Γ' Επεισόδιο - Διαδραστική Δραστηριότητα</h1>
+    <p><strong>Δημιουργία: Παναγιώτης Δόμβρος 2025 (CC BY-NC)</strong></p>
+    
+    <h2>Δίσημοι Λόγοι</h2>
+    <div class="quiz active" id="quiz1">
+        <p>1. Τι εννοεί η Ελένη όταν λέει "Ναι ∙ κι όπου λογιάζω αυτός θα φτάσει";</p>
+        <button onclick="checkAnswer(true, 'quiz1', 'quiz2')">Αναφέρεται στον Μενέλαο 🧔</button>
+        <button onclick="checkAnswer(false, 'quiz1', 'quiz2')">Αναφέρεται στο ναυαγό 🌊</button>
+        <p id="quiz-feedback1"></p>
+    </div>
+    
+    <div class="quiz" id="quiz2">
+        <p>2. Πώς ερμηνεύει ο Θεοκλύμενος τη φράση "όπου κι αν είναι τώρα, τον πονάω";</p>
+        <button onclick="checkAnswer(true, 'quiz2', 'quiz3')">Νομίζει πως εννοεί τον πνιγμένο Μενέλαο 🌊</button>
+        <button onclick="checkAnswer(false, 'quiz2', 'quiz3')">Καταλαβαίνει ότι εννοεί τον ζωντανό Μενέλαο 🧔</button>
+        <p id="quiz-feedback2"></p>
+    </div>
+    
+    <div class="quiz" id="quiz3">
+        <p>3. Τι εννοεί ο Μενέλαος όταν λέει "Το χρέος σου κυρά ∙ από δω και πέρα πρέπει τον πρώτο σου άντρα να ξεχάσεις και ν’ αγαπάς αυτόν που βλέπεις μπρος σου";</p>
+        <button onclick="checkAnswer(true, 'quiz3', 'quiz4')">Εννοεί τον εαυτό του 🧔</button>
+        <button onclick="checkAnswer(false, 'quiz3', 'quiz4')">Εννοεί τον Θεοκλύμενο 👑</button>
+        <p id="quiz-feedback3"></p>
+    </div>
+    
+    <div class="quiz" id="quiz4">
+        <p>4. Τι εννοεί η Ελένη όταν λέει "Τίποτα δε γνωρίζω, ετούτος ξέρει";</p>
+        <button onclick="checkAnswer(true, 'quiz4', 'quiz5')">Υποκρίνεται ότι δεν ξέρει τίποτα 🎭</button>
+        <button onclick="checkAnswer(false, 'quiz4', 'quiz5')">Πραγματικά δεν ξέρει τίποτα 🤷‍♀️</button>
+        <p id="quiz-feedback4"></p>
+    </div>
+    
+    <div class="quiz" id="quiz5">
+        <p>5. Τι εννοεί ο Θεοκλύμενος όταν λέει "Στη χώρα μου όπου θες χτίσ' του έναν τάφο";</p>
+        <button onclick="checkAnswer(true, 'quiz5', 'quiz6')">Επιτρέπει την ταφή του Μενέλαου 🪦</button>
+        <button onclick="checkAnswer(false, 'quiz5', 'quiz6')">Αρνείται την ταφή του Μενέλαου 🚫</button>
+        <p id="quiz-feedback5"></p>
+    </div>
+    
+    <div class="quiz" id="quiz6">
+        <p>6. Τι εννοεί ο Μενέλαος όταν λέει "Μήτε για το νεκρό μήτε για μένα";</p>
+        <button onclick="checkAnswer(true, 'quiz6', '')">Υποκρίνεται ότι δεν ενδιαφέρεται 🎭</button>
+        <button onclick="checkAnswer(false, 'quiz6', '')">Πραγματικά δεν ενδιαφέρεται 🤷‍♂️</button>
+        <p id="quiz-feedback6"></p>
+    </div>
+    
+    <h2>Αναγνώριση Τραγικής Ειρωνείας</h2>
+    <div class="irony active" id="irony1">
+        <p>1. Ποια από τις παρακάτω φράσεις αποτελεί παράδειγμα τραγικής ειρωνείας;</p>
+        <button onclick="checkIrony(true, 'irony1', 'irony2')">"Ο Μενέλαος χάθηκε στη θάλασσα, δεν υπάρχει ελπίδα" 🌊</button>
+        <button onclick="checkIrony(false, 'irony1', 'irony2')">"Ο Θεοκλύμενος είναι πανίσχυρος και ξέρει τα πάντα" 👑</button>
+        <p id="irony-feedback1"></p>
+    </div>
+    
+    <div class="irony" id="irony2">
+        <p>2. Ποια άλλη φράση είναι παράδειγμα τραγικής ειρωνείας;</p>
+        <button onclick="checkIrony(true, 'irony2', 'irony3')">"Η Ελένη δεν θα ξαναδεί ποτέ τον άντρα της" 🧔</button>
+        <button onclick="checkIrony(false, 'irony2', 'irony3')">"Ο Θεοκλύμενος ξέρει όλα τα σχέδια της Ελένης" 👑</button>
+        <p id="irony-feedback2"></p>
+    </div>
+    
+    <div class="irony" id="irony3">
+        <p>3. Ποια φράση είναι τραγική ειρωνεία;</p>
+        <button onclick="checkIrony(true, 'irony3', 'irony4')">"Ο Μενέλαος είναι νεκρός, δεν υπάρχει ελπίδα" 🪦</button>
+        <button onclick="checkIrony(false, 'irony3', 'irony4')">"Η Ελένη είναι πιστή στον Θεοκλύμενο" 👰</button>
+        <p id="irony-feedback3"></p>
+    </div>
+    
+    <div class="irony" id="irony4">
+        <p>4. Ποια φράση είναι τραγική ειρωνεία;</p>
+        <button onclick="checkIrony(true, 'irony4', 'irony5')">"Ο Θεοκλύμενος είναι ο πιο έξυπνος βασιλιάς" 👑</button>
+        <button onclick="checkIrony(false, 'irony4', 'irony5')">"Η Ελένη δεν ξέρει τίποτα για τον Μενέλαο" 🤷‍♀️</button>
+        <p id="irony-feedback4"></p>
+    </div>
+    
+    <div class="irony" id="irony5">
+        <p>5. Ποια φράση είναι τραγική ειρωνεία;</p>
+        <button onclick="checkIrony(true, 'irony5', 'irony6')">"Ο Μενέλαος θα επιστρέψει σύντομα" 🧔</button>
+        <button onclick="checkIrony(false, 'irony5', 'irony6')">"Η Θεονόη είναι πιστή στον Θεοκλύμενο" 🧙‍♀️</button>
+        <p id="irony-feedback5"></p>
+    </div>
+    
+    <div class="irony" id="irony6">
+        <p>6. Ποια φράση είναι τραγική ειρωνεία;</p>
+        <button onclick="checkIrony(true, 'irony6', '')">"Ο Θεοκλύμενος δεν θα μάθει ποτέ την αλήθεια" 🎭</button>
+        <button onclick="checkIrony(false, 'irony6', '')">"Η Ελένη είναι πιστή στον Μενέλαο" 👰</button>
+        <p id="irony-feedback6"></p>
+    </div>
+    
+    <h2>Παιχνίδι Ρόλων</h2>
+    <div class="roleplay active" id="roleplay1">
+        <p>1. Είσαι ο Μενέλαος. Τι λες στον Θεοκλύμενο;</p>
+        <button onclick="roleplayChoice(1, 'roleplay1', 'roleplay2')">"Είμαι ναυαγός, δεν ξέρω τίποτα" 🌊</button>
+        <button onclick="roleplayChoice(2, 'roleplay1', 'roleplay2')">"Είμαι ο Μενέλαος!" 🧔</button>
+        <p id="roleplay-feedback1"></p>
+    </div>
+    
+    <div class="roleplay" id="roleplay2">
+        <p>2. Είσαι η Ελένη. Τι λες στον Θεοκλύμενο για να τον εξαπατήσεις;</p>
+        <button onclick="roleplayChoice(1, 'roleplay2', 'roleplay3')">"Ο Μενέλαος πνίγηκε, δεν υπάρχει ελπίδα" 🌊</button>
+        <button onclick="roleplayChoice(2, 'roleplay2', 'roleplay3')">"Θα γίνω γυναίκα σου, αλλά πρώτα θάψε τον Μενέλαο" 👰</button>
+        <p id="roleplay-feedback2"></p>
+    </div>
+    
+    <div class="roleplay" id="roleplay3">
+        <p>3. Είσαι ο Μενέλαος. Τι λες στον Θεοκλύμενο για να τον εξαπατήσεις;</p>
+        <button onclick="roleplayChoice(1, 'roleplay3', 'roleplay4')">"Ο Μενέλαος είναι νεκρός, δεν υπάρχει ελπίδα" 🪦</button>
+        <button onclick="roleplayChoice(2, 'roleplay3', 'roleplay4')">"Η Ελένη είναι πιστή στον Θεοκλύμενο" 👰</button>
+        <p id="roleplay-feedback3"></p>
+    </div>
+    
+    <div class="roleplay" id="roleplay4">
+        <p>4. Είσαι η Ελένη. Τι λες στον Θεοκλύμενο για να τον εξαπατήσεις;</p>
+        <button onclick="roleplayChoice(1, 'roleplay4', 'roleplay5')">"Ο Μενέλαος θα επιστρέψει σύντομα" 🧔</button>
+        <button onclick="roleplayChoice(2, 'roleplay4', 'roleplay5')">"Η Θεονόη είναι πιστή στον Θεοκλύμενο" 🧙‍♀️</button>
+        <p id="roleplay-feedback4"></p>
+    </div>
+    
+    <div class="roleplay" id="roleplay5">
+        <p>5. Είσαι ο Μενέλαος. Τι λες στον Θεοκλύμενο για να τον εξαπατήσεις;</p>
+        <button onclick="roleplayChoice(1, 'roleplay5', 'roleplay6')">"Ο Θεοκλύμενος δεν θα μάθει ποτέ την αλήθεια" 🎭</button>
+        <button onclick="roleplayChoice(2, 'roleplay5', 'roleplay6')">"Η Ελένη είναι πιστή στον Μενέλαο" 👰</button>
+        <p id="roleplay-feedback5"></p>
+    </div>
+    
+    <div class="roleplay" id="roleplay6">
+        <p>6. Είσαι η Ελένη. Τι λες στον Θεοκλύμενο για να τον εξαπατήσεις;</p>
+        <button onclick="roleplayChoice(1, 'roleplay6', '')">"Ο Μενέλαος είναι ασφαλής στην Ελλάδα" 🏛️</button>
+        <button onclick="roleplayChoice(2, 'roleplay6', '')">"Η Θεονόη είναι πιστή στον Θεοκλύμενο" 🧙‍♀️</button>
+        <p id="roleplay-feedback6"></p>
+    </div>
+    
+    <script>
+        function checkAnswer(correct, currentId, nextId) {
+            const feedback = document.getElementById(`quiz-feedback${currentId.slice(-1)}`);
+            if (feedback) {
+                feedback.innerText = correct ? "✅ Σωστή απάντηση!" : "❌ Λάθος απάντηση. Ξαναπροσπάθησε!";
+                if (correct && nextId) {
+                    document.getElementById(currentId).classList.remove("active");
+                    document.getElementById(nextId).classList.add("active");
+                }
+            }
+        }
+
+        function checkIrony(correct, currentId, nextId) {
+            const feedback = document.getElementById(`irony-feedback${currentId.slice(-1)}`);
+            if (feedback) {
+                feedback.innerText = correct ? "✅ Σωστή απάντηση! Αυτή είναι τραγική ειρωνεία." : "❌ Λάθος απάντηση. Ξαναπροσπάθησε!";
+                if (correct && nextId) {
+                    document.getElementById(currentId).classList.remove("active");
+                    if (nextId) document.getElementById(nextId).classList.add("active");
+                }
+            }
+        }
+        
+        function roleplayChoice(option, currentId, nextId) {
+            const feedback = document.getElementById(`roleplay-feedback${currentId.slice(-1)}`);
+            if (feedback) {
+                feedback.innerText = option === 1 ? "✅ Ο Θεοκλύμενος δεν υποψιάζεται τίποτα! Καλή επιλογή." : "❌ Ο Θεοκλύμενος καταλαβαίνει την απάτη! Δοκίμασε ξανά.";
+                if (option === 1 && nextId) {
+                    document.getElementById(currentId).classList.remove("active");
+                    document.getElementById(nextId).classList.add("active");
+                }
+            }
+        }
+    </script>
+</body>
+</html>
